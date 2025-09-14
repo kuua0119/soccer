@@ -1,0 +1,51 @@
+<div class="hero d-flex align-items-center justify-content-center text-white">
+  <div class="overlay p-4 p-md-5 rounded text-center">
+    <h1 class="display-3 fw-bold mb-2">サカコミ ⚽</h1>
+    <p class="lead mb-4">世界中のサッカーファンが集まるコミュニティサイト</p>
+
+    <div class="d-flex justify-content-center gap-2">
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary btn-lg shadow" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg shadow" %>
+    </div>
+  </div>
+</div>
+
+<section class="container my-5">
+  <h2 class="text-center mb-4">サカコミでできること</h2>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-1 mb-2">🗨️</div>
+          <h5 class="card-title">実況掲示板</h5>
+          <p class="card-text">試合を観ながらみんなで盛り上がろう！</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-1 mb-2">⚽</div>
+          <h5 class="card-title">試合後の感想共有</h5>
+          <p class="card-text">感動や悔しさを仲間と分かち合える</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 text-center shadow-sm">
+        <div class="card-body">
+          <div class="fs-1 mb-2">👥</div>
+          <h5 class="card-title">観戦仲間を見つける</h5>
+          <p class="card-text">一緒に応援する仲間を探そう！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <p class="mb-0">© <%= Time.current.year %> サカコミ | <%= link_to "About", about_path, class: "text-white text-decoration-underline" %></p>
+</footer>
