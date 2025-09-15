@@ -1,0 +1,25 @@
+<h2>プロフィール編集</h2>
+
+<%= form_with model: @user, url: update_user_profile_path, local: true, method: :patch, html: { multipart: true } do |f| %>
+  <div class="field">
+    <%= f.label :name, "名前" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br>
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :avatar, "プロフィール画像" %><br>
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar.variant(resize_to_fill: [150,150]) %><br>
+    <% end %>
+    <%= f.file_field :avatar, accept: "image/*" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "更新する", class: "btn btn-primary" %>
+  </div>
+<% end %>

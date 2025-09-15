@@ -1,3 +1,26 @@
-// Place all the styles related to the public/homes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.hero {
+  height: 80vh;
+  min-height: 520px;
+  background-image: url('<%= asset_path("stadium.jpg") %>');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* 黒の半透明オーバーレイ（Bootstrap のユーティリティでも可能） */
+.hero .overlay {
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 12px;
+  max-width: 920px;
+}
+
+/* レスポンシブで文字サイズ調整 */
+@media (max-width: 576px) {
+  .hero .display-3 {
+    font-size: 2.2rem;
+  }
+}
