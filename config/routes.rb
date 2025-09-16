@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     root to: "homes#top"
     get "about", to: "homes#about"
     get "users/mypage", to: "users#mypage", as: :users_mypage
-    get 'users/edit', to: 'users#edit', as: :edit_user_profile
-    patch 'users', to: 'users#update', as: :update_user_profile
+    get 'users/:id/edit', to: 'users#edit', as: :edit_user_profile
+    patch 'users/:id', to: 'users#update', as: :update_user_profile
     resources :posts
     resources :communities
     

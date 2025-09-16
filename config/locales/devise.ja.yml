@@ -1,0 +1,14 @@
+ja:
+  devise:
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "既にログアウト済みです。"
+    registrations:
+      signed_up: "アカウント登録が完了しました。"
+      updated: "アカウント情報を更新しました。"
+      destroyed: "退会が完了しました。"
+    failure:
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      inactive: "このアカウントは退会済みです。"

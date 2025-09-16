@@ -1,39 +1,51 @@
-<div class="container my-4">
-  <div class="row">
-    <!-- 左カラム: プロフィール -->
-    <div class="card">
-    <% if current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar.variant(resize_to_fill: [150,150]), class: "card-img-top rounded-circle" %>
-    <% else %>
-      <%= image_tag "default_avatar.png", size: "150x150", class: "card-img-top rounded-circle" %>
-    <% end %>
+<div class="container my-5">
+
+  <!-- プロフィールカード -->
+  <div class="card shadow-lg mb-5">
+    <div class="card-header p-0">
+      <img src="/assets/banner.jpg" class="img-fluid w-100" alt="バナー画像">
+    </div>
     <div class="card-body text-center">
-      <h5 class="card-title"><%= current_user.name %></h5>
-      <p class="card-text"><%= current_user.introduction %></p>
-      <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-sm btn-primary" %>
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(resize_to_fill: [120, 120]), class: "rounded-circle mb-3", alt: "プロフィール画像" %>
+      <% else %>
+        <%= image_tag "profile.png", class: "rounded-circle mb-3", width: 120, height: 120, alt: "デフォルトプロフィール画像" %>
+      <% end %>
+      <h3 class="mb-1"><%= current_user.name %></h3>
+      <a href="<%= edit_user_profile_path(current_user.id) %>" class="btn btn-outline-primary btn-sm">プロフィール編集</a>
     </div>
   </div>
 
-    <!-- 右カラム: 活動内容 -->
-    <div class="col-md-9">
-      <h4>あなたの投稿</h4>
-      <% current_user.posts.each do |post| %>
-        <div class="card mb-2">
-          <div class="card-body">
-            <h5><%= link_to post.title, post_path(post) %></h5>
-            <small><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></small>
-          </div>
-        </div>
+  <!-- あなたの投稿 -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+      <i class="fas fa-pen"></i> あなたの投稿
+    </div>
+    <div class="card-body">
+      <% if current_user.posts.any? %>
+        <% current_user.posts.each do |post| %>
+          <p><%= post.title %></p>
+        <% end %>
+      <% else %>
+        <p class="text-muted">まだ投稿はありません</p>
       <% end %>
-
-      <h4 class="mt-4">参加中のコミュニティ</h4>
-      <% current_user.communities.each do |community| %>
-        <span class="badge bg-success"><%= community.name %></span>
-      <% end %>
-
-      <div class="mt-4">
-        <%= link_to "通知を見る", notifications_path, class: "btn btn-outline-info" %>
-      </div>
     </div>
   </div>
+
+  <!-- 参加中のコミュニティ -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-light">
+      <i class="fas fa-users"></i> 参加中のコミュニティ
+    </div>
+    <div class="card-body">
+      <% if current_user.communities.any? %>
+        <% current_user.communities.each do |community| %>
+          <p><%= community.name %></p>
+        <% end %>
+      <% else %>
+        <p class="text-muted">まだ参加しているコミュニティはありません</p>
+      <% end %>
+    </div>
+  </div>
+
 </div>
