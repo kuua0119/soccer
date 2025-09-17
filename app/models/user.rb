@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         has_many :posts
+         has_many :posts, dependent: :nullify
          has_many :communities
   has_one_attached :avatar
   def active_for_authentication?

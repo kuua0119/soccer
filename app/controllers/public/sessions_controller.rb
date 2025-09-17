@@ -2,12 +2,11 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :check_user_is_active, only: [:create]
-
-  protected
-
-  def after_sign_in_path_for(resource)
-    root_path 
+  def destroy
+    sign_out(current_user)
+    redirect_to root_path
   end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -39,5 +38,10 @@ class Public::SessionsController < Devise::SessionsController
       set_flash_message!(:alert, :inactive)
       redirect_to new_user_session_path and return
     end
+  end
+  protected
+
+  def after_sign_in_path_for(resource)
+    root_path 
   end
 end

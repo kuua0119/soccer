@@ -1,0 +1,23 @@
+<%= form_with model: @post, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :title, "タイトル", class: "form-label" %>
+    <%= f.text_field :title, class: "form-control", placeholder: "例: バルサ vs レアル戦の感想" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :body, "内容", class: "form-label" %>
+    <%= f.text_area :body, rows: 6, class: "form-control", placeholder: "試合の感想などを書いてください！" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :image, "画像アップロード", class: "form-label" %>
+    <%= f.file_field :image, class: "form-control" %>
+    <% if @post.image.attached? %>
+      <div class="mt-2">
+        <%= image_tag @post.image.variant(resize_to_fill: [200,150]), class: "img-fluid rounded" %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= f.submit (@post.new_record? ? "投稿する" : "更新する"), class: "btn btn-primary" %>
+<% end %>

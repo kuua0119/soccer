@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get "users/mypage", to: "users#mypage", as: :users_mypage
     get 'users/:id/edit', to: 'users#edit', as: :edit_user_profile
     patch 'users/:id', to: 'users#update', as: :update_user_profile
+    delete "users/:id", to: "users#destroy", as: :destroy_user_profile
     resources :posts
     resources :communities
     

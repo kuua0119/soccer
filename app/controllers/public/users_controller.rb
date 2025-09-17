@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: [:edit, :update]
-  before_action :ensure_current_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :ensure_current_user, only: [:edit, :update, :destroy]
+
   def mypage
     @user = current_user
   end
@@ -15,6 +16,12 @@ class Public::UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy
+    reset_session  
+    redirect_to root_path, notice: "アカウントを削除しました"
   end
 
   private

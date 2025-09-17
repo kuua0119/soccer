@@ -2,11 +2,19 @@
   <div class="overlay p-4 p-md-5 rounded text-center">
     <h1 class="display-3 fw-bold mb-2">サカコミ ⚽</h1>
     <p class="lead mb-4">世界中のサッカーファンが集まるコミュニティサイト</p>
+  </div>
+</div>
 
-    <div class="d-flex justify-content-center gap-2">
-      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary btn-lg shadow" %>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg shadow" %>
-    </div>
+    <% if user_signed_in? %>
+      <!-- ログイン後 -->
+      <p class="lead">ようこそ！サッカーファン同士でつながり、試合をもっと楽しもう！</p>
+    <% else %>
+      <!-- ログイン前 -->
+      <div class="d-flex justify-content-center gap-2">
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary btn-lg shadow" %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg shadow" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -47,5 +55,7 @@
 </section>
 
 <footer class="bg-dark text-white text-center py-3 mt-5">
-  <p class="mb-0">© <%= Time.current.year %> サカコミ | <%= link_to "About", about_path, class: "text-white text-decoration-underline" %></p>
+  <p class="mb-0">© <%= Time.current.year %> サカコミ | 
+    <%= link_to "About", about_path, class: "text-white text-decoration-underline" %>
+  </p>
 </footer>
