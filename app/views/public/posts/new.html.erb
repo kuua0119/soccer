@@ -1,5 +1,15 @@
 <div class="container my-5">
   <h2 class="mb-4">新規投稿</h2>
+  <% if @post.errors.any? %>
+    <div class="alert alert-danger">
+      <h5>投稿に失敗しました</h5>
+      <ul class="mb-0">
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= render "form", post: @post %>
   <%= link_to "一覧に戻る", posts_path, class: "btn btn-outline-secondary mt-3" %>
 </div>

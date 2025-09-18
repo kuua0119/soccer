@@ -51,7 +51,13 @@
     </nav>
 
     <div class="container mt-4">
-      <%= yield %>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">
+          <%= value %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% end %>
+    <%= yield %>
     </div>
   </body>
 </html>
