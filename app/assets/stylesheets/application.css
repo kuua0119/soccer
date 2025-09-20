@@ -13,9 +13,6 @@
  *= require_tree .
  *= require_self
  */
-@import "bootstrap"; 
-@import "homes";
 body {
-  background: url("/assets/soccer_bg.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background-image: image-url("soccer_bg.jpg");
 }
