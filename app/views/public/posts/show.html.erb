@@ -17,6 +17,10 @@
         </div>
       <% end %>
 
+      <div class="mt-5">
+        <%= render "public/comments/comments", post: @post %>
+      </div>
+
       <%= link_to "一覧に戻る", posts_path, class: "btn btn-outline-secondary mt-3" %>
     </div>
   </div>
