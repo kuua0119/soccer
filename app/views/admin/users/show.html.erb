@@ -1,0 +1,8 @@
+<h2><%= @user.name %> さんの詳細</h2>
+
+<p>メール: <%= @user.email %></p>
+<p>投稿数: <%= @user.posts.count %></p>
+<p>コメント数: <%= @user.comments.count %></p>
+
+<%= link_to "削除", admin_user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<%= link_to "一覧に戻る", admin_users_path, class: "btn btn-secondary" %>

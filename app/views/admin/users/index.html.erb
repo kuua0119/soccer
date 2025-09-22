@@ -1,0 +1,23 @@
+<h2>ユーザー一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= link_to user.name, admin_user_path(user) %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to "退会", admin_user_path(user), method: :delete, data: { confirm: "本当にこのユーザーを削除しますか？ この操作は取り消せません。" },class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,47 @@
+<div class="container my-5">
+  <div class="text-center mb-4">
+    <h2>⚽ サカコミ 管理画面</h2>
+    <p class="text-muted">ようこそ、管理者ページへ</p>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">ユーザー数</h5>
+          <p class="display-6"><%= User.count %></p>
+          <%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">投稿数</h5>
+          <p class="display-6"><%= Post.count %></p>
+          <%= link_to "投稿一覧", admin_posts_path, class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">コメント数</h5>
+          <p class="display-6"><%= Comment.count %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">コミュニティ数</h5>
+          <p class="display-6"><%= Community.count %></p>
+          <%= link_to "コミュニティ一覧", admin_communities_path, class: "btn btn-outline-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
