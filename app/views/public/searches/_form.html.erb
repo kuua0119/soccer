@@ -1,0 +1,9 @@
+<%= form_with url: search_path, method: :get, local: true, class: "d-flex" do |f| %>
+  <%= f.select :model, [["ユーザー", "user"], ["投稿", "post"], ["コミュニティ", "community"]],
+                { selected: params[:model] },
+                class: "form-select me-2" %>
+
+  <%= f.text_field :keyword, value: params[:keyword], class: "form-control me-2", placeholder: "キーワードを入力" %>
+
+  <%= f.submit "検索", class: "btn btn-outline-primary" %>
+<% end %>

@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     get "about", to: "homes#about"
     get "users/mypage", to: "users#mypage", as: :users_mypage
     get 'users/:id/edit', to: 'users#edit', as: :edit_user_profile
+    get "search", to: "searches#search", as: :search
     patch 'users/:id', to: 'users#update', as: :update_user_profile
     delete "users/:id", to: "users#destroy", as: :destroy_user_profile
+    resources :users, only: [:show]
     resources :posts
     resources :communities
     

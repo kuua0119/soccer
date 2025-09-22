@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <h2 class="mb-4">検索結果</h2>
+
+  <% if @results.any? %>
+    <p class="text-muted mb-3">
+      「<%= @keyword %>」の検索結果：<strong><%= @results.count %></strong>件
+    </p>
+
+    <% if @model == "user" %>
+      <% @results.each do |user| %>
+        <div class="card mb-2 p-3">
+          <p><%= user.name %></p>
+          <%= link_to "マイページを見る", user_path(user) %>
+        </div>
+      <% end %>
+
+    <% elsif @model == "post" %>
+      <% @results.each do |post| %>
+        <div class="card mb-2 p-3">
+          <h5><%= link_to post.title, post_path(post) %></h5>
+          <p><%= truncate(post.body, length: 100) %></p>
+        </div>
+      <% end %>
+
+    <% elsif @model == "community" %>
+      <% @results.each do |community| %>
+        <div class="card mb-2 p-3">
+          <h5><%= link_to community.name, community_path(community) %></h5>
+        </div>
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <p class="text-muted">
+      「<%= @keyword %>」に該当する結果はありません。
+    </p>
+  <% end %>
+</div>
