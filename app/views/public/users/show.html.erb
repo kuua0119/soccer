@@ -1,0 +1,51 @@
+<div class="container my-5">
+  <div class="card shadow-lg mb-5">
+    <div class="card-header p-0">
+      <img src="/assets/banner.jpg" class="img-fluid w-100" alt="バナー画像">
+    </div>
+    <div class="card-body text-center">
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar.variant(resize_to_fill: [120, 120]), class: "rounded-circle mb-3", alt: "プロフィール画像" %>
+      <% else %>
+        <%= image_tag "profile.jpg", class: "rounded-circle mb-3", width: 120, height: 120, alt: "デフォルトプロフィール画像" %>
+      <% end %>
+
+      <h3 class="mb-1"><%= @user.name %></h3>
+
+      <% if current_user == @user %>
+        <a href="<%= edit_user_profile_path(@user.id) %>" class="btn btn-outline-primary btn-sm">プロフィール編集</a>
+        <%= link_to "退会する", destroy_user_profile_path(@user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-light">
+      <i class="fas fa-pen"></i> 投稿
+    </div>
+    <div class="card-body">
+      <% if @user.posts.any? %>
+        <% @user.posts.each do |post| %>
+          <p><%= link_to post.title, post_path(post) %></p>
+        <% end %>
+      <% else %>
+        <p class="text-muted">まだ投稿はありません</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-light">
+      <i class="fas fa-users"></i> 参加中のコミュニティ
+    </div>
+    <div class="card-body">
+      <% if @user.communities.any? %>
+        <% @user.communities.each do |community| %>
+          <p><%= link_to community.name, community_path(community) %></p>
+        <% end %>
+      <% else %>
+        <p class="text-muted">まだ参加しているコミュニティはありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

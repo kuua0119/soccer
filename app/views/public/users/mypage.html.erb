@@ -8,7 +8,7 @@
       <% if current_user.avatar.attached? %>
         <%= image_tag current_user.avatar.variant(resize_to_fill: [120, 120]), class: "rounded-circle mb-3", alt: "プロフィール画像" %>
       <% else %>
-        <%= image_tag "profile.png", class: "rounded-circle mb-3", width: 120, height: 120, alt: "デフォルトプロフィール画像" %>
+        <%= image_tag "profile.jpg", class: "rounded-circle mb-3", width: 120, height: 120, alt: "デフォルトプロフィール画像" %>
       <% end %>
       <h3 class="mb-1"><%= current_user.name %></h3>
       <a href="<%= edit_user_profile_path(current_user.id) %>" class="btn btn-outline-primary btn-sm">プロフィール編集</a>
