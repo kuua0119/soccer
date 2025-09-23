@@ -4,7 +4,7 @@
       <h3 class="card-title"><%= @post.title %></h3>
 
       <p class="text-muted">
-        <%= @post.user.present? ? @post.user.name : "退会済みユーザー" %> さん
+        <%= @post.user&.display_name || "退会済みユーザー" %> さん
         | <%= l @post.created_at, format: :long %>
       </p>
 

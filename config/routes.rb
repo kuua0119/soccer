@@ -24,4 +24,13 @@ Rails.application.routes.draw do
 
     resources :communities
   end
+
+  namespace :admin do
+    root to: "homes#top"
+    resources :users, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      resources :comments, only: [:destroy]
+    end
+    resources :communities
+  end
 end

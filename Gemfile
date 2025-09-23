@@ -67,3 +67,4 @@ gem 'dotenv-rails'
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+gem 'will_paginate', '~> 3.1.0'
