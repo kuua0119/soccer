@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm">
+        <% if @community.image.attached? %>
+          <%= image_tag @community.image, class: "card-img-top", size: "800x300" %>
+        <% else %>
+          <%= image_tag "no-image.png", class: "card-img-top", size: "800x300" %>
+        <% end %>
+
+        <div class="card-body">
+          <h3 class="card-title"><%= @community.community_name %></h3>
+          <p class="card-text"><%= simple_format(@community.introduction) %></p>
+
+          <% if @community.club.present? %>
+            <hr>
+            <h5>メインクラブ</h5>
+            <div class="d-flex align-items-center">
+              <% if @community.club.logo.attached? %>
+                <%= image_tag @community.club.logo, size: "60x60", class: "me-3 rounded" %>
+              <% end %>
+              <div>
+                <strong><%= @community.club.name %></strong><br>
+                <small><%= @community.club.league %> | <%= @community.club.country %></small>
+              </div>
+            </div>
+          <% end %>
+
+          <hr>
+          <p><strong>作成者:</strong> <%= @community.user.name %></p>
+
+          <% if @community.user == current_user %>
+            <div class="mb-3">
+              <%= link_to "編集する", edit_community_path(@community), class: "btn btn-warning" %>
+            </div>
+          <% end %>
+
+          <% if @community.users.include?(current_user) %>
+            <% if @community.user == current_user %>
+              <!-- 作成者は退会できない -->
+              <p class="text-muted">※あなたは作成者なので退会できません</p>
+            <% else %>
+              <%= button_to "退会する", community_community_user_path(@community, current_user),method: :delete, class: "btn btn-outline-danger" %>
+            <% end %>
+          <% else %>
+            <%= button_to "参加する", community_community_users_path(@community),method: :post, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card mt-4 shadow-sm">
+        <div class="card-header bg-light">
+          メンバー一覧
+        </div>
+        <div class="card-body">
+          <% if @community.users.any? %>
+            <ul class="list-group">
+              <% @community.users.each do |member| %>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-user me-2"></i> 
+                  <%= link_to member.name, user_path(member), class: "text-decoration-none" %>
+                  <% if member == @community.user %>
+                      <span class="badge bg-primary ms-2">作成者</span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-muted">まだメンバーはいません</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

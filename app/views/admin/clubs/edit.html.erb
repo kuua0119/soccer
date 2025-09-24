@@ -1,0 +1,38 @@
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-light">
+      <h4 class="mb-0"><i class="fas fa-futbol"></i> クラブ編集</h4>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: [:admin, @club], local: true) do |f| %>
+        <div class="form-group mb-3">
+          <%= f.label :name, "クラブ名" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :league, "リーグ" %>
+          <%= f.text_field :league, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :country, "国" %>
+          <%= f.text_field :country, class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :logo, "ロゴ画像" %>
+          <%= f.file_field :logo, class: "form-control" %>
+          <% if @club.logo.attached? %>
+            <div class="mt-2">
+              <%= image_tag @club.logo, class: "img-thumbnail", size: "120x120" %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= f.submit "保存", class: "btn btn-primary" %>
+        <%= link_to "戻る", admin_clubs_path, class: "btn btn-outline-secondary ms-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -42,7 +42,7 @@
     <div class="card-body">
       <% if @user.communities.any? %>
         <% @user.communities.each do |community| %>
-          <p><%= link_to community.name, community_path(community) %></p>
+          <p><%= link_to community.community_name, community_path(community) %></p>
         <% end %>
       <% else %>
         <p class="text-muted">まだ参加しているコミュニティはありません</p>

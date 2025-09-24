@@ -44,7 +44,7 @@
     <div class="card-body">
       <% if current_user.communities.any? %>
         <% current_user.communities.each do |community| %>
-          <p><%= community.name %></p>
+          <p><%= community.community_name %></p>
         <% end %>
       <% else %>
         <p class="text-muted">まだ参加しているコミュニティはありません</p>

@@ -1,0 +1,35 @@
+<h2>クラブ一覧</h2>
+
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>クラブ名</th>
+      <th>リーグ</th>
+      <th>国</th>
+      <th>ロゴ</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clubs.each do |club| %>
+      <tr>
+        <td><%= club.id %></td>
+        <td><%= club.name %></td>
+        <td><%= club.league %></td>
+        <td><%= club.country %></td>
+        <td>
+          <% if club.logo.attached? %>
+            <%= image_tag club.logo, size: "60x60", class: "img-thumbnail" %>
+          <% else %>
+            <span class="text-muted">なし</span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to "編集", edit_admin_club_path(club), class: "btn btn-sm btn-primary" %>
+          <%= link_to "削除", admin_club_path(club),method: :delete,data: { confirm: "本当に削除しますか？" },class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

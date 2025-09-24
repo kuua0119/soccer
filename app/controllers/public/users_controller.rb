@@ -5,10 +5,12 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @communities = @user.communities
   end
 
   def mypage
     @user = current_user
+    @communities = @user.communities
   end
 
   def edit

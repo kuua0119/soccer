@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h2>コミュニティ一覧</h2>
+
+  <div class="row">
+    <% @communities.each do |community| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <% if community.image.attached? %>
+            <%= image_tag community.image, class: "card-img-top", size: "300x200" %>
+          <% else %>
+            <%= image_tag "no-image.png", class: "card-img-top", size: "300x200" %>
+          <% end %>
+
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to community.community_name, community_path(community) %></h5>
+            <p class="card-text"><%= truncate(community.introduction, length: 60) %></p>
+
+            <% if community.club.present? %>
+              <div class="d-flex align-items-center mt-2">
+                <% if community.club.logo.attached? %>
+                  <%= image_tag community.club.logo, size: "40x40", class: "me-2 rounded" %>
+                <% end %>
+                <span><%= community.club.name %>（<%= community.club.league %>）</span>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="card-footer text-muted">
+            作成者: <%= community.user.name %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
