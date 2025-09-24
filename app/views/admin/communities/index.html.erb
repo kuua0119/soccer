@@ -1,0 +1,23 @@
+<h2>コミュニティ一覧</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th>作成者</th>
+      <th>作成日</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @communities.each do |community| %>
+      <tr>
+        <td><%= link_to community.community_name, admin_community_path(community) %></td>
+        <td><%= community.user.present? ? community.user.name : "退会済みユーザー" %></td>
+        <td><%= l community.created_at, format: :short %></td>
+        <td>
+          <%= link_to "削除", admin_community_path(community),method: :delete,data: { confirm: "本当に削除しますか？" },class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

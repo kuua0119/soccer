@@ -5,7 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts, dependent: :nullify
   has_many :comments, dependent: :nullify
-  has_many :communities
+  has_many :communities, foreign_key: "user_id"  
+  has_many :community_users, dependent: :destroy
+  has_many :joined_communities, through: :community_users, source: :community
   has_one_attached :avatar
 
   def received_comments_count

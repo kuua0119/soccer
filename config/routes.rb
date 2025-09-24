@@ -22,7 +22,9 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
 
-    resources :communities
+    resources :communities do
+      resources :community_users, only: [:create, :destroy]
+    end
   end
 
   namespace :admin do
@@ -31,6 +33,9 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :comments, only: [:destroy]
     end
-    resources :communities
+    resources :communities do
+      resources :community_users, only: [:destroy]
+    end
+    resources :clubs, only: [:index, :edit, :update, :destroy]
   end
 end

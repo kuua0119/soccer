@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_22_134221) do
+ActiveRecord::Schema.define(version: 2025_09_24_122439) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(version: 2025_09_22_134221) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "clubs", force: :cascade do |t|
+    t.string "name"
+    t.string "league"
+    t.string "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id", null: false
@@ -68,6 +76,9 @@ ActiveRecord::Schema.define(version: 2025_09_22_134221) do
     t.text "introduction", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "club_id", null: false
+    t.string "club"
+    t.index ["club_id"], name: "index_communities_on_club_id"
     t.index ["user_id"], name: "index_communities_on_user_id"
   end
 
@@ -107,6 +118,7 @@ ActiveRecord::Schema.define(version: 2025_09_22_134221) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "communities", "clubs"
   add_foreign_key "communities", "users"
   add_foreign_key "community_users", "communities"
   add_foreign_key "community_users", "users"
