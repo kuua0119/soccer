@@ -8,9 +8,11 @@
         <p class="card-text"><%= truncate(post.body, length: 100) %></p>
         <p>コメント数: <%= post.comments.count %></p>
         <% if post.image.attached? %>
-          <%= image_tag post.image.variant(resize_to_fill: [300, 200]),
-                        class: "img-fluid rounded mt-2" %>
+          <%= image_tag post.image.variant(resize_to_fill: [300, 200]),class: "img-fluid rounded mt-2" %>
         <% end %>
+        <div id="like-btn-<%= post.id %>">
+          <%= render "public/likes/like_button", post: post %>
+        </div>
         <small class="text-muted d-block mt-2">
           投稿者:
           <%= post.user.present? ? post.user.name : "退会済みユーザー" %>

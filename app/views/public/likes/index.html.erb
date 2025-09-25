@@ -1,0 +1,15 @@
+<div class="container my-4">
+  <h3>あなたがいいねした投稿</h3>
+  <% if @liked_posts.any? %>
+    <ul class="list-group">
+      <% @liked_posts.each do |post| %>
+        <li class="list-group-item">
+          <%= link_to post.title, post_path(post) %>  
+          <small class="text-muted">by <%= post.user.name %></small>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="text-muted">まだいいねした投稿はありません</p>
+  <% end %>
+</div>

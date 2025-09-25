@@ -17,9 +17,13 @@ Rails.application.routes.draw do
     patch 'users/:id', to: 'users#update', as: :update_user_profile
     delete "users/:id", to: "users#destroy", as: :destroy_user_profile
     resources :users, only: [:show]
+    resources :likes, only: [:index]
 
     resources :posts do
       resources :comments, only: [:create, :destroy]
+      resources :likes, only: [:create] do
+        delete :destroy, on: :collection
+      end
     end
 
     resources :communities do

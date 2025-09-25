@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :community_users, dependent: :destroy
   has_many :joined_communities, through: :community_users, source: :community
   has_many :community_messages, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
   has_one_attached :avatar
 
   def received_comments_count
