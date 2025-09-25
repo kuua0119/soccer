@@ -1,0 +1,11 @@
+<% if current_user.likes.exists?(post_id: post.id) %>
+  <!-- いいね済み: 削除ボタン -->
+  <%= link_to post_likes_path(post),method: :delete,remote: true,class: "btn btn-sm btn-danger" do %>
+    ♥ いいね (<span id="like-count-<%= post.id %>"><%= post.likes.count %></span>)
+  <% end %>
+<% else %>
+  <!-- 未いいね: 登録ボタン -->
+  <%= link_to post_likes_path(post),method: :post,remote: true,class: "btn btn-sm btn-outline-danger" do %>
+    ♡ いいね (<span id="like-count-<%= post.id %>"><%= post.likes.count %></span>)
+  <% end %>
+<% end %>
