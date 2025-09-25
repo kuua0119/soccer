@@ -19,6 +19,11 @@
     <%= f.file_field :avatar, accept: "image/*" %>
   </div>
 
+  <div class="field">
+    <%= f.label :introduction, "紹介文" %><br>
+    <%= f.text_area :introduction, class: "form-control", rows: 5, placeholder: "自己紹介を入力してください" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "更新する", class: "btn btn-primary" %>
   </div>

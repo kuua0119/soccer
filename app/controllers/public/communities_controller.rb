@@ -54,6 +54,6 @@ class Public::CommunitiesController < ApplicationController
   end
 
   def community_params
-    params.require(:community).permit(:introduction, :image)
+    params.require(:community).permit(:club_id, :community_name, :introduction, :image)
   end
 end

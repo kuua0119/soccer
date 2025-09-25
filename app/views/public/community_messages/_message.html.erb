@@ -1,0 +1,28 @@
+<div class="border-bottom pb-2 mb-2 d-flex">
+  <div class="me-2">
+    <% if message.user.avatar.attached? %>
+      <%= image_tag message.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle" %>
+    <% else %>
+      <%= image_tag "profile.jpg", width: 40, height: 40, class: "rounded-circle" %>
+    <% end %>
+  </div>
+
+  <div>
+    <strong><%= message.user.name %></strong><br>
+    <%= simple_format(message.body) %>
+
+    <% if message.files.attached? %>
+      <div class="mt-1 d-flex flex-wrap">
+        <% message.files.each do |file| %>
+          <% if file.image? %>
+            <%= image_tag file.variant(resize_to_limit: [200, 200]), class: "img-thumbnail me-1 mb-1" %>
+          <% else %>
+            <%= link_to file.filename, url_for(file), class: "text-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <small class="text-muted"><%= l message.created_at, format: :short %></small>
+  </div>
+</div>

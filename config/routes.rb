@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
     resources :communities do
       resources :community_users, only: [:create, :destroy]
+      resources :community_messages, only: [:index, :create]
     end
   end
 
