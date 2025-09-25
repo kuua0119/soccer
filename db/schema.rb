@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_24_122439) do
+ActiveRecord::Schema.define(version: 2025_09_25_041624) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -82,6 +82,16 @@ ActiveRecord::Schema.define(version: 2025_09_24_122439) do
     t.index ["user_id"], name: "index_communities_on_user_id"
   end
 
+  create_table "community_messages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "community_id", null: false
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["community_id"], name: "index_community_messages_on_community_id"
+    t.index ["user_id"], name: "index_community_messages_on_user_id"
+  end
+
   create_table "community_users", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "community_id", null: false
@@ -89,6 +99,19 @@ ActiveRecord::Schema.define(version: 2025_09_24_122439) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["community_id"], name: "index_community_users_on_community_id"
     t.index ["user_id"], name: "index_community_users_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "community_id", null: false
+    t.integer "community_message_id", null: false
+    t.boolean "read"
+    t.boolean "default", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["community_id"], name: "index_notifications_on_community_id"
+    t.index ["community_message_id"], name: "index_notifications_on_community_message_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -110,6 +133,7 @@ ActiveRecord::Schema.define(version: 2025_09_24_122439) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.text "introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -120,7 +144,12 @@ ActiveRecord::Schema.define(version: 2025_09_24_122439) do
   add_foreign_key "comments", "users"
   add_foreign_key "communities", "clubs"
   add_foreign_key "communities", "users"
+  add_foreign_key "community_messages", "communities"
+  add_foreign_key "community_messages", "users"
   add_foreign_key "community_users", "communities"
   add_foreign_key "community_users", "users"
+  add_foreign_key "notifications", "communities"
+  add_foreign_key "notifications", "community_messages"
+  add_foreign_key "notifications", "users"
   add_foreign_key "posts", "users"
 end
