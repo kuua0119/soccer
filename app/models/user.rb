@@ -11,6 +11,11 @@ class User < ApplicationRecord
   has_many :community_messages, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
+  has_many :active_relationships, class_name: "Relationship",foreign_key: "follower_id",dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",foreign_key: "followed_id",dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following, through: :active_relationships, source: :followed
+
   has_one_attached :avatar
 
   def received_comments_count
@@ -27,5 +32,17 @@ class User < ApplicationRecord
 
   def inactive_message
     is_active ? super : :inactive_account
+  end
+
+  def follow(user)
+    following << user unless self == user
+  end
+
+  def unfollow(user)
+    following.delete(user)
+  end
+
+  def following?(user)
+    following.include?(user)
   end
 end

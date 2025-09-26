@@ -18,15 +18,16 @@
   </div>
 
   <div class="mt-5">
-    <h4>コメント一覧</h4>
-
-    <% @post.comments.each do |comment| %>
-      <div class="border rounded p-2 mb-2">
+    <div class="card shadow-sm">
+      <div class="card-body" p-2 mb-2">
+        <h4>コメント一覧</h4>
+        <% @post.comments.each do |comment| %>
         <strong><%= comment.user.present? ? comment.user.name : "退会済みユーザー" %></strong>
         <p><%= simple_format(comment.body) %></p>
         <small class="text-muted"><%= l comment.created_at, format: :short %></small>
         <%= link_to "削除",admin_post_comment_path(@post, comment),method: :delete,data: { confirm: "このコメントを削除しますか？" },class: "btn btn-sm btn-danger ms-2" %>
       </div>
+    </div>
     <% end %>
   </div>
 </div>

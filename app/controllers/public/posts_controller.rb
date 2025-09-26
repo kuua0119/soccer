@@ -4,7 +4,11 @@ class Public::PostsController < ApplicationController
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)  
+    if user_signed_in?
+      @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).includes(:user).order(created_at: :desc)
+    else
+      @posts = Post.includes(:user).order(created_at: :desc)
+    end
   end
 
   def show

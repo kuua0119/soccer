@@ -16,7 +16,15 @@ Rails.application.routes.draw do
     get "search", to: "searches#search", as: :search
     patch 'users/:id', to: 'users#update', as: :update_user_profile
     delete "users/:id", to: "users#destroy", as: :destroy_user_profile
-    resources :users, only: [:show]
+
+    resources :users, only: [:show] do
+      resources :relationships, only: [:create, :destroy]
+      member do
+        get :following, to: "relationships#following"
+        get :followers, to: "relationships#followers" 
+      end
+    end
+
     resources :likes, only: [:index]
 
     resources :posts do

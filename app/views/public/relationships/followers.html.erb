@@ -1,0 +1,32 @@
+<div class="container my-5">
+  <h2 class="mb-4">フォロワー一覧</h2>
+
+  <% if @users.any? %>
+    <div class="list-group shadow-sm">
+      <% @users.each do |user| %>
+        <div class="list-group-item d-flex align-items-center">
+          <% if user.avatar.attached? %>
+            <%= image_tag user.avatar.variant(resize_to_fill: [50, 50]), class: "rounded-circle me-3" %>
+          <% else %>
+            <%= image_tag "profile.jpg", class: "rounded-circle me-3", width: 50, height: 50 %>
+          <% end %>
+
+          <div class="flex-grow-1">
+            <strong><%= link_to user.name, user_path(user), class: "text-decoration-none text-dark" %></strong><br>
+            <small class="text-muted">
+              <%= truncate(user.introduction, length: 40) || "紹介文はまだありません" %>
+            </small>
+          </div>
+
+          <% if user != current_user %>
+            <div>
+              <%= render "public/relationships/follow_button", user: user %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">フォロワーはいません</p>
+  <% end %>
+</div>
