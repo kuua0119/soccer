@@ -1,7 +1,10 @@
 <div class="container my-5">
-  <h2 class="h3 fw-bold border-start border-3 border-primary ps-2 mb-4 text-danger">
-    新規投稿
-  </h2>
+  <div class="mb-4">
+    <span class="h3 fw-bold border-start border-3 border-primary ps-2 text-white title-bg">
+      新規投稿
+    </span>
+  </div>
+
   <% if @post.errors.any? %>
     <div class="alert alert-danger">
       <h5>投稿に失敗しました</h5>

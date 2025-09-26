@@ -1,18 +1,23 @@
-<div class="border-bottom pb-2 mb-2 d-flex">
-  <div class="me-2">
+<div class="mb-2 d-flex <%= message.user == current_user ? 'justify-content-end' : 'justify-content-start' %> align-items-end">
+  <% if message.user != current_user %>
     <% if message.user.avatar.attached? %>
-      <%= image_tag message.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle" %>
+      <%= image_tag message.user.avatar.variant(resize_to_fill: [40, 40]), class: "rounded-circle me-2" %>
     <% else %>
-      <%= image_tag "profile.jpg", width: 40, height: 40, class: "rounded-circle" %>
+      <%= image_tag "profile.jpg", width: 40, height: 40, class: "rounded-circle me-2" %>
     <% end %>
-  </div>
+  <% end %>
 
-  <div>
-    <strong><%= message.user.name %></strong><br>
-    <%= simple_format(message.body) %>
+  <div class="p-2 rounded-3 <%= message.user == current_user ? 'bg-success text-white' : 'bg-light' %>" style="max-width: 70%;">
+    <% if message.user != current_user %>
+      <strong><%= message.user.name %></strong><br>
+    <% end %>
+
+    <% if message.body.present? %>
+      <%= simple_format(message.body) %>
+    <% end %>
 
     <% if message.files.attached? %>
-      <div class="mt-1 d-flex flex-wrap">
+      <div class="mt-2 d-flex flex-wrap">
         <% message.files.each do |file| %>
           <% if file.image? %>
             <%= image_tag file.variant(resize_to_limit: [200, 200]), class: "img-thumbnail me-1 mb-1" %>
@@ -23,6 +28,8 @@
       </div>
     <% end %>
 
-    <small class="text-muted"><%= l message.created_at, format: :short %></small>
+    <div class="text-end">
+      <small class="text-muted"><%= l message.created_at, format: :short %></small>
+    </div>
   </div>
 </div>

@@ -1,4 +1,14 @@
 ja:
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        body: 内容
+      community_message:
+        body: メッセージ
+      direct_message:
+        content: メッセージ
+
   devise:
     sessions:
       signed_in: "ログインしました。"

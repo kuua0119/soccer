@@ -27,6 +27,10 @@ Rails.application.routes.draw do
 
     resources :likes, only: [:index]
 
+    resources :rooms, only: [:show, :create]
+
+    resources :direct_messages, only: [:create]
+
     resources :posts do
       resources :comments, only: [:create, :destroy]
       resources :likes, only: [:create] do

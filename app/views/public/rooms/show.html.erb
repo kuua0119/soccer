@@ -1,0 +1,20 @@
+<div class="card shadow-sm">
+  <div class="card-header">DM</div>
+  <div id="room-id" data-room-id="<%= @room.id %>"></div>
+
+  <div id="messages" class="card-body" style="height: 400px; overflow-y: auto;">
+    <%= render @direct_messages %>
+  </div>
+
+  <div class="card-footer">
+    <%= form_with model: @message, url: direct_messages_path, data: { turbo: false }, html: { multipart: true } do |f| %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.text_area :content, rows: 2, class: "form-control mb-2", placeholder: "140字まで入力できます" %>
+
+      <div class="d-flex justify-content-between">
+        <%= f.file_field :image, class: "form-control form-control-sm me-2" %>
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

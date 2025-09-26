@@ -1,3 +1,13 @@
+<% if @message && @message.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="card shadow-sm">
   <div class="card-header bg-light">
     <i class="fas fa-comments"></i> チャット

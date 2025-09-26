@@ -2,7 +2,7 @@ class CommunityMessage < ApplicationRecord
   belongs_to :user
   belongs_to :community
   has_many_attached :files
-  validates :body, presence: true
+  validates :body, presence: true, unless: -> { files.attached? }
 
   after_create_commit :create_notifications
 
