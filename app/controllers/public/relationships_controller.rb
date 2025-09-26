@@ -11,7 +11,7 @@ class Public::RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     relationship = current_user.active_relationships.find_by(followed_id: user.id)
     relationship.destroy if relationship
-    redirect_to user
+    redirect_to users_mypage_path
   end
 
   def following

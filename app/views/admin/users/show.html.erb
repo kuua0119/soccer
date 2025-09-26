@@ -55,7 +55,7 @@
       <ul>
         <% @user.communities.each do |community| %>
           <li>
-            <%= link_to community.name, admin_community_path(community) %>
+            <%= link_to community.community_name, admin_community_path(community) %>
           </li>
         <% end %>
       </ul>

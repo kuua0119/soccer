@@ -11,6 +11,9 @@
       <% end %>
 
       <h3 class="mb-1"><%= @user.name %></h3>
+      <div class="mt-3">
+        <%= render "public/relationships/follow_button", user: @user %>
+      </div>
       <p class="text-muted">コメント数: <%= @user.comments.count %></p>
 
       <div class="d-flex justify-content-center gap-3 mt-2">

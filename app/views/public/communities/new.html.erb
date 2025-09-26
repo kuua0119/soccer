@@ -1,24 +1,26 @@
 <div class="container mt-4">
-  <h2>コミュニティ作成</h2>
+  <h2 class="h3 fw-bold border-start border-3 border-primary ps-2 mb-4 text-danger">
+    コミュニティ作成
+  </h2>
 
   <%= form_with model: @community, local: true do |f| %>
     <div class="mb-3">
-      <%= f.label :club_id, "メインクラブ", class: "form-label" %>
+      <%= f.label :club_id, "メインクラブ", class: "form-label fw-bold text-primary" %>
       <%= f.collection_select :club_id, Club.all, :id, :name,{ prompt: "クラブを選択してください" },{ class: "form-select" } %>
     </div>
 
     <div class="mb-3">
-      <%= f.label :community_name, "コミュニティ名", class: "form-label" %>
+      <%= f.label :community_name, "コミュニティ名", class: "form-label fw-bold text-primary" %>
       <%= f.text_field :community_name, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= f.label :introduction, "紹介文", class: "form-label" %>
+      <%= f.label :introduction, "紹介文", class: "form-label fw-bold text-primary" %>
       <%= f.text_area :introduction, rows: 5, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= f.label :image, "コミュニティ画像", class: "form-label" %>
+      <%= f.label :image, "コミュニティ画像", class: "form-label fw-bold text-primary" %>
       <%= f.file_field :image, class: "form-control" %>
     </div>
 

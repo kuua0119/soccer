@@ -20,43 +20,33 @@
   </div>
 </div>
 
-<section class="container my-5">
-  <div class="mx-auto text-center">
-    <h5 class="text-dark bg-light py-4 mb-0">サカコミでできること</h5>
-  </div>
+<div class="container my-5">
+  <div class="bg-primary text-white p-2 text-center">最新の投稿</div>
 
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card h-100 text-center shadow-sm">
-        <div class="card-body">
-          <div class="fs-1 mb-2">🗨️</div>
-          <h5 class="card-title">実況掲示板</h5>
-          <p class="card-text">試合を観ながらみんなで盛り上がろう！</p>
+  <% if @posts.any? %>
+    <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
+              <p class="card-text text-muted">
+                <%= post.user&.name || "退会済みユーザー" %> さん | 
+                <%= l post.created_at, format: :short %>
+              </p>
+              <p><%= truncate(post.body, length: 100) %></p>
+              <% if post.image.attached? %>
+                <%= image_tag post.image, class: "img-fluid rounded" %>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
-
-    <div class="col-md-4">
-      <div class="card h-100 text-center shadow-sm">
-        <div class="card-body">
-          <div class="fs-1 mb-2">⚽</div>
-          <h5 class="card-title">試合後の感想共有</h5>
-          <p class="card-text">感動や悔しさを仲間と分かち合える</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card h-100 text-center shadow-sm">
-        <div class="card-body">
-          <div class="fs-1 mb-2">👥</div>
-          <h5 class="card-title">観戦仲間を見つける</h5>
-          <p class="card-text">一緒に応援する仲間を探そう！</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <% else %>
+    <p class="text-muted text-center">まだ投稿はありません。</p>
+  <% end %>
+</div>
 
 <footer class="bg-dark text-white text-center py-3 mt-5">
   <p class="mb-0">© <%= Time.current.year %> サカコミ | 

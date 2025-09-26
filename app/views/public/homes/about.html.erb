@@ -1,2 +1,37 @@
-<h1>About</h1>
-<p>このページはAboutページです</p>
+<div class="container my-5">
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h2 class="card-title mb-4 text-center">
+        ようこそ！<br>
+        このサイトについて
+      </h2>
+
+      <p class="lead text-center mb-4">
+        このサイトは、海外サッカーやコミュニティ活動を通じて<br>
+        ユーザー同士がつながり、情報を共有できるSNS型サービスです。
+      </p>
+
+      <div class="row text-center">
+        <div class="col-md-4 mb-3">
+          <i class="fas fa-futbol fa-2x mb-2 text-success"></i>
+          <h5>投稿・シェア</h5>
+          <p>サッカーや日常に関する記事や画像を投稿し、みんなで共有できます。</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="fas fa-users fa-2x mb-2 text-primary"></i>
+          <h5>フォロー・交流</h5>
+          <p>気になるユーザーをフォローしたり、コメントや「いいね」で交流できます。</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="fas fa-comments fa-2x mb-2 text-warning"></i>
+          <h5>コミュニティ</h5>
+          <p>同じ趣味やチームを応援する仲間とコミュニティを作って会話できます。</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= link_to "トップページへ戻る", root_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
