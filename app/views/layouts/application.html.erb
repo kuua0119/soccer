@@ -15,39 +15,44 @@
   </head>
 
   <body>
-    <% unless controller_path.start_with?("admin/") %>
-      <!-- Public側のナビゲーション -->
+    <% if controller_path.start_with?("admin/") %>
+      <!-- Admin側ナビゲーション -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-          <a class="navbar-brand" href="<%= root_path %>">⚽サカコミ⚽ </a>
+          <a class="navbar-brand" href="<%= admin_root_path %>">⚽サカコミ管理者メニュー⚽</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
+          <div class="collapse navbar-collapse" id="adminNavbar">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "投稿一覧", admin_posts_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "コミュニティ一覧", admin_communities_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-danger" %></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <% else %>
+      <!-- Public側ナビゲーション -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="<%= root_path %>">⚽サカコミ⚽</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <%= link_to "マイページ", users_mypage_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "コミュニティ作成", new_community_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "コミュニティ一覧", communities_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "新規投稿", new_post_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "いいね一覧", likes_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-danger" %>
-              </li>
+              <li class="nav-item"><%= link_to "マイページ", users_mypage_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "コミュニティ作成", new_community_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "コミュニティ一覧", communities_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "いいね一覧", likes_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link text-danger" %></li>
             </ul>
           </div>
         </div>
@@ -62,6 +67,7 @@
       <% end %>
     <% end %>
 
+    <!-- フラッシュメッセージ -->
     <div class="container mt-4">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key == "notice" ? "success" : "danger" %> alert-dismissible fade show" role="alert">

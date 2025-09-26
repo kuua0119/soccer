@@ -1,7 +1,10 @@
 <div class="container my-4">
-  <h2 class="h3 fw-bold border-start border-3 border-primary ps-2 mb-4 text-danger">
-    あなたがいいねした投稿
-  </h3>
+  <div class="mb-4">
+    <span class="h3 fw-bold border-start border-3 border-primary ps-2 text-white title-bg">
+      あなたがいいねした投稿
+    </span>
+  </div>
+  
   <% if @liked_posts.any? %>
     <ul class="list-group">
       <% @liked_posts.each do |post| %>

@@ -11,6 +11,7 @@ class Public::CommunityMessagesController < ApplicationController
   def create
     @message = @community.community_messages.build(message_params)
     @message.user = current_user
+    @message.created_at = Time.current
     if @message.save
       redirect_to community_community_messages_path(@community)
     else

@@ -1,0 +1,23 @@
+<div class="mb-2 d-flex <%= direct_message.user == current_user ? 'justify-content-end' : 'justify-content-start' %>">
+  <% if direct_message.user != current_user %>
+    <% if direct_message.user.avatar.attached? %>
+      <%= image_tag direct_message.user.avatar, class: "rounded-circle me-2", size: "40x40" %>
+    <% else %>
+      <%= image_tag "profile.jpg", class: "rounded-circle me-2", size: "40x40" %>
+    <% end %>
+  <% end %>
+
+  <div class="p-2 rounded-3 <%= direct_message.user == current_user ? 'bg-success text-white' : 'bg-light' %>" style="max-width: 70%;">
+    <% if direct_message.content.present? %>
+      <%= simple_format(direct_message.content) %>
+    <% end %>
+
+    <% if direct_message.image.attached? %>
+      <%= image_tag direct_message.image, class: "img-fluid rounded mt-2" %>
+    <% end %>
+
+    <div class="text-end">
+      <small class="text-muted"><%= l direct_message.created_at, format: :short %></small>
+    </div>
+  </div>
+</div>
