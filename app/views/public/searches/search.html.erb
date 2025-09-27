@@ -29,7 +29,7 @@
     <% elsif @model == "community" %>
       <% @results.each do |community| %>
         <div class="card mb-2 p-3">
-          <h5><%= link_to community.name, community_path(community) %></h5>
+          <h5><%= link_to community.community_name, community_path(community) %></h5>
         </div>
       <% end %>
     <% end %>

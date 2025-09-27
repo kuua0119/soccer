@@ -1,8 +1,12 @@
 class Community < ApplicationRecord
   belongs_to :user
-  belongs_to :club 
+  belongs_to :club, optional: true
   has_many :community_users, dependent: :destroy
   has_many :users, through: :community_users
   has_many :community_messages, dependent: :destroy
   has_one_attached :image
+
+  validates :club_id, presence: { message: "を選択してください" }
+  validates :community_name, presence: { message: "を入力してください" }
+  validates :introduction, presence: { message: "を入力してください" }
 end

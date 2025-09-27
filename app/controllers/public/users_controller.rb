@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:edit, :update, :destroy]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
+  before_action :reject_guest_user, only: [:edit,:update, :destroy]
 
   def show
     @user = User.find(params[:id])

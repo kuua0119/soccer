@@ -30,11 +30,11 @@ class User < ApplicationRecord
   end
   
   def active_for_authentication?
-    super && is_active
+    super && !is_banned
   end
 
   def inactive_message
-    is_active ? super : :inactive_account
+    is_banned ? :banned : super
   end
 
   def follow(user)
@@ -47,5 +47,20 @@ class User < ApplicationRecord
 
   def following?(user)
     following.include?(user)
+  end
+
+  def banned?
+    is_banned
+  end
+
+  def self.guest
+    find_or_create_by!(email: "guest@example.com") do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
+    end
+  end
+
+    def guest?
+    email == "guest@example.com"
   end
 end

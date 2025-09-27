@@ -1,5 +1,10 @@
 ja:
   activerecord:
+    models:
+      community: コミュニティ
+      post: 投稿
+      community_message: コミュニティメッセージ
+      direct_message: DM
     attributes:
       post:
         title: タイトル
@@ -8,6 +13,10 @@ ja:
         body: メッセージ
       direct_message:
         content: メッセージ
+      community:
+        club_id: メインクラブ
+        community_name: コミュニティ名
+        introduction: 紹介文
 
   devise:
     sessions:
@@ -22,3 +31,4 @@ ja:
       invalid: "メールアドレスまたはパスワードが正しくありません。"
       not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
       inactive: "このアカウントは退会済みです。"
+      banned: "このアカウントは凍結されています。"

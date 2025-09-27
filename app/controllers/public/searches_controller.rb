@@ -11,7 +11,7 @@ class Public::SearchesController < ApplicationController
     when "post"
       @results = Post.where("title LIKE ? OR body LIKE ?", "%#{@keyword}%", "%#{@keyword}%")
     when "community"
-      @results = Community.where("name LIKE ?", "%#{@keyword}%")   # 👈 名前だけ
+      @results = Community.where("community_name LIKE ?", "%#{@keyword}%")   # 👈 名前だけ
     else
       @results = []
     end
