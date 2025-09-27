@@ -1,4 +1,7 @@
-<h2>コミュニティ一覧</h2>
+<div class="title-bg text-white d-inline-block px-3 py-2 rounded">
+  <h2 class="m-0">コミュニティ一覧</h2>
+</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -15,6 +18,11 @@
         <td><%= community.user.present? ? community.user.name : "退会済みユーザー" %></td>
         <td><%= l community.created_at, format: :short %></td>
         <td>
+          <% if community.is_hidden? %>
+            <%= button_to "公開に戻す", unhide_admin_community_path(community),method: :patch,class: "btn btn-sm btn-success" %>
+          <% else %>
+            <%= button_to "非公開にする", hide_admin_community_path(community),method: :patch,data: { confirm: "このコミュニティを非公開にしますか？" },class: "btn btn-sm btn-warning" %>
+          <% end %>
           <%= link_to "削除", admin_community_path(community),method: :delete,data: { confirm: "本当に削除しますか？" },class: "btn btn-sm btn-danger" %>
         </td>
       </tr>

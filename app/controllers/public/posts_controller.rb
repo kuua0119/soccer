@@ -2,13 +2,11 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :reject_guest_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    if user_signed_in?
-      @posts = Post.where(user_id: [current_user.id, *current_user.following_ids]).includes(:user).order(created_at: :desc)
-    else
-      @posts = Post.includes(:user).order(created_at: :desc)
-    end
+    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.where(is_hidden: false).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
   end
 
   def show

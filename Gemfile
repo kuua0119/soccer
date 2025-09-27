@@ -68,3 +68,4 @@ gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem 'will_paginate', '~> 3.1.0'
+gem 'kaminari','~> 1.2.1'

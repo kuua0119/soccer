@@ -7,6 +7,10 @@ class Admin::SessionsController < Devise::SessionsController
   # def new
   #   super
   # end
+  def destroy
+    sign_out(current_user)
+    redirect_to new_admin_session_path
+  end
 
   # POST /resource/sign_in
   # def create

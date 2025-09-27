@@ -1,8 +1,21 @@
 <div class="card shadow-sm mb-4">
   <div class="card-body">
+    <% if @user.avatar.attached? %>
+      <%= image_tag @user.avatar.variant(resize_to_fill: [150, 150]), class: "rounded-circle shadow-sm mb-3", alt: @user.name %>
+    <% else %>
+      <%= image_tag "profile.jpg", width: 150, height: 150, class: "rounded-circle shadow-sm mb-3", alt: "デフォルトユーザー" %>
+    <% end %>
+
     <h4 class="card-title"><%= @user.name.present? ? @user.name : "退会済みユーザー" %> さんの詳細</h4>
     <p><strong>Email:</strong> <%= @user.email %></p>
     <p><strong>登録日:</strong> <%= l @user.created_at, format: :long %></p>
+    <p><strong>ステータス:</strong>
+      <% if @user.is_banned? %>
+        <span class="badge bg-warning text-dark">凍結中</span>
+      <% else %>
+        <span class="badge bg-success">有効</span>
+      <% end %>
+    </p>
   </div>
 </div>
 
@@ -66,6 +79,12 @@
 </div>
 
 <div class="d-flex gap-2">
+  <% if @user.is_banned? %>
+    <%= button_to "凍結解除", unban_admin_user_path(@user), method: :patch, class: "btn btn-success" %>
+  <% else %>
+    <%= button_to "凍結する", ban_admin_user_path(@user), method: :patch, data: { confirm: "このユーザーを凍結してもよろしいですか？" }, class: "btn btn-warning" %>
+  <% end %>
+
   <%= link_to "削除", admin_user_path(@user), method: :delete, data: { confirm: "このユーザーを削除してもよろしいですか？ 投稿・コメントは残ります。" }, class: "btn btn-danger" %>
   <%= link_to "一覧に戻る", admin_users_path, class: "btn btn-secondary" %>
 </div>

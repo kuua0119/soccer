@@ -1,16 +1,16 @@
 <%= form_with model: @post, local: true do |f| %>
   <div class="mb-3">
-    <%= f.label :title, "タイトル", class: "form-label fw-bold text-primary" %>
+    <%= f.label :title, "タイトル", class: "form-label fw-bold" %>
     <%= f.text_field :title, class: "form-control", placeholder: "例: バルサ vs レアル戦の感想" %>
   </div>
 
   <div class="mb-3">
-    <%= f.label :body, "内容", class: "form-label fw-bold text-primary" %>
+    <%= f.label :body, "内容", class: "form-label fw-bold" %>
     <%= f.text_area :body, rows: 6, class: "form-control", placeholder: "試合の感想などを書いてください！" %>
   </div>
 
   <div class="mb-3">
-    <%= f.label :image, "画像アップロード", class: "form-label fw-bold text-primary" %>
+    <%= f.label :image, "画像アップロード", class: "form-label fw-bold" %>
     <%= f.file_field :image, class: "form-control" %>
     <% if @post.image.attached? %>
       <div class="mt-2">

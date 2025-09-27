@@ -8,6 +8,12 @@
         | <%= l @post.created_at, format: :long %>
       </p>
 
+      <% if @post.image.attached? %>
+        <div class="mb-3">
+          <%= image_tag @post.image, class: "img-fluid rounded shadow-sm" %>
+        </div>
+      <% end %>
+
       <p><%= simple_format(@post.body) %></p>
 
       <div class="mt-3">

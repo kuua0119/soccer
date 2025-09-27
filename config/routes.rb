@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
+
   scope module: :public do
     root to: "homes#top"
     get "about", to: "homes#about"
@@ -46,11 +50,24 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    resources :users, only: [:index, :show, :destroy]
+    resources :users, only: [:index, :show, :destroy] do
+      member do
+        patch :ban   
+        patch :unban 
+      end
+    end
     resources :posts, only: [:index, :show, :destroy] do
+      member do
+        patch :hide
+        patch :unhide
+      end
       resources :comments, only: [:destroy]
     end
     resources :communities do
+      member do
+        patch :hide
+        patch :unhide
+      end
       resources :community_users, only: [:destroy]
     end
     resources :clubs, only: [:index, :edit, :update, :destroy]
