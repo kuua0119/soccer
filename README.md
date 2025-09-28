@@ -15,8 +15,9 @@
 ・試合後の感想を共有したい時
 ・同じ趣味やチームを応援する仲間が欲しい時
 ## 設計書
-後ほど作成
-​
+・UIFlows：https://drive.google.com/file/d/1gt5mMfIgmECYimRpP3t2Z5HOtUKsFAJh/view?usp=sharing
+​・ER図：https://drive.google.com/file/d/11YgLe-I1vHDkmj4oTx9uadqdHpUCR-eD/view?usp=sharing
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
