@@ -74,10 +74,9 @@ ActiveRecord::Schema.define(version: 2025_09_27_082214) do
     t.integer "user_id", null: false
     t.string "community_name", null: false
     t.text "introduction", null: false
+    t.integer "club_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "club_id", null: false
-    t.string "club"
     t.boolean "is_hidden", default: false
     t.index ["club_id"], name: "index_communities_on_club_id"
     t.index ["user_id"], name: "index_communities_on_user_id"

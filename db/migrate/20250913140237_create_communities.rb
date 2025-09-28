@@ -4,6 +4,7 @@ class CreateCommunities < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.string :community_name, null: false
       t.text :introduction, null: false
+      t.references :club, null: false, foreign_key: true
     
       t.timestamps
     end
