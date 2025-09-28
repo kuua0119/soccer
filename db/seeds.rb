@@ -24,3 +24,5 @@ clubs.each do |club|
     c.country = club[:country]
   end
 end
+
+Admin.create!(email: "admin@example.com", password: "123456")
