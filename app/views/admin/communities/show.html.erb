@@ -9,7 +9,11 @@
       <%= @community.user.present? ? @community.user.name : "退会済みユーザー" %>
     </p>
     <p><%= simple_format(@community.introduction) %></p>
-    <%= link_to "コミュニティ削除", admin_community_path(@community),method: :delete,data: { confirm: "本当に削除しますか？" },class: "btn btn-danger" %>
+    <% if @community.is_hidden? %>
+      <%= button_to "公開に戻す", unhide_admin_community_path(@community),method: :patch,class: "btn btn-success",data: { confirm: "このコミュニティを公開に戻しますか？" } %>
+    <% else %>
+      <%= button_to "非公開にする", hide_admin_community_path(@community),method: :patch,class: "btn btn-warning",data: { confirm: "このコミュニティを非公開にしますか？" } %>
+    <% end %>
   </div>
 </div>
 

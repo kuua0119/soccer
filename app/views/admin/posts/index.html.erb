@@ -28,7 +28,6 @@
             <% else %>
               <%= button_to "非公開にする", hide_admin_post_path(post), method: :patch,data: { confirm: "この投稿を非公開にしますか？" },class: "btn btn-sm btn-warning" %>
             <% end %>
-            <%= link_to "削除", admin_post_path(post),method: :delete,data: { confirm: "本当に削除しますか？" },class: "btn btn-sm btn-outline-danger" %>
           </td>
         </tr>
       <% end %>

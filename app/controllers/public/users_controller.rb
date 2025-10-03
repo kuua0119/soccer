@@ -26,8 +26,8 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    reset_session  
+    @user.update(is_active: false)
+    reset_session
     redirect_to root_path, notice: "アカウントを削除しました"
   end
 

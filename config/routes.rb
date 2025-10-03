@@ -61,7 +61,12 @@ Rails.application.routes.draw do
         patch :hide
         patch :unhide
       end
-      resources :comments, only: [:destroy]
+      resources :comments, only: [] do
+        member do
+          patch :hide
+          patch :unhide
+        end
+      end
     end
     resources :communities do
       member do

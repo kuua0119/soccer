@@ -9,11 +9,6 @@ class Admin::UsersController < ApplicationController
   def show
   end
 
-  def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: "ユーザーを削除しました"
-  end
-
   def ban
     @user.update(is_banned: true)
     redirect_to admin_user_path(@user), notice: "ユーザーを凍結しました"

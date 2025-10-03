@@ -23,7 +23,6 @@
           <% else %>
             <%= button_to "非公開にする", hide_admin_community_path(community),method: :patch,data: { confirm: "このコミュニティを非公開にしますか？" },class: "btn btn-sm btn-warning" %>
           <% end %>
-          <%= link_to "削除", admin_community_path(community),method: :delete,data: { confirm: "本当に削除しますか？" },class: "btn btn-sm btn-danger" %>
         </td>
       </tr>
     <% end %>

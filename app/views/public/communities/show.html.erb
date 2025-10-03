@@ -27,7 +27,7 @@
           <% end %>
 
           <hr>
-          <p><strong>作成者:</strong> <%= @community.user.name %></p>
+          <p><strong>作成者:</strong> <%= @community.user&.display_name || "退会済みユーザー" %></p>
 
           <% if @community.user == current_user %>
             <div class="mb-3">
