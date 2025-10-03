@@ -11,7 +11,7 @@
           <% if community.image.attached? %>
             <%= image_tag community.image, class: "card-img-top", size: "300x200" %>
           <% else %>
-            <%= image_tag "no-image.png", class: "card-img-top", size: "300x200" %>
+            <%= image_tag "profile.jpg", class: "card-img-top", size: "300x200" %>
           <% end %>
 
           <div class="card-body">
@@ -29,7 +29,7 @@
           </div>
 
           <div class="card-footer text-muted">
-            作成者: <%= community.user.name %>
+            作成者: <%= community.user&.display_name || "退会済みユーザー" %>
           </div>
         </div>
       </div>

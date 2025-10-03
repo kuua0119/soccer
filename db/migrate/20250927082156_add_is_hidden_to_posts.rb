@@ -1,5 +1,5 @@
 class AddIsHiddenToPosts < ActiveRecord::Migration[6.1]
   def change
-    add_column :posts, :is_hidden, :boolean, default: false
+    add_column :posts, :is_hidden, :boolean, default: false, default: false
   end
 end

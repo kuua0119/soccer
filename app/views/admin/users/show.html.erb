@@ -84,7 +84,5 @@
   <% else %>
     <%= button_to "凍結する", ban_admin_user_path(@user), method: :patch, data: { confirm: "このユーザーを凍結してもよろしいですか？" }, class: "btn btn-warning" %>
   <% end %>
-
-  <%= link_to "削除", admin_user_path(@user), method: :delete, data: { confirm: "このユーザーを削除してもよろしいですか？ 投稿・コメントは残ります。" }, class: "btn btn-danger" %>
   <%= link_to "一覧に戻る", admin_users_path, class: "btn btn-secondary" %>
 </div>

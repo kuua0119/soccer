@@ -1,5 +1,5 @@
 class Community < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :club, optional: true
   has_many :community_users, dependent: :destroy
   has_many :users, through: :community_users

@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts, dependent: :nullify
   has_many :comments, dependent: :nullify
-  has_many :communities, foreign_key: "user_id"  
+  has_many :communities, foreign_key: "user_id", dependent: :nullify
   has_many :community_users, dependent: :destroy
   has_many :joined_communities, through: :community_users, source: :community
   has_many :community_messages, dependent: :destroy
@@ -28,13 +28,29 @@ class User < ApplicationRecord
   def display_name
     name.presence || "退会済みユーザー"
   end
+
+  def display_avatar
+    if name.blank? 
+      "profile.jpg"
+    elsif avatar.attached?
+      avatar
+    else
+      "profile.jpg"
+    end
+  end
   
   def active_for_authentication?
     super && !is_banned
   end
 
   def inactive_message
-    is_banned ? :banned : super
+    if is_banned
+      :banned
+    elsif !is_active?
+      :inactive
+    else
+      super
+    end
   end
 
   def follow(user)
