@@ -5,12 +5,11 @@ class Public::CommunitiesController < ApplicationController
   before_action :reject_guest_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @communities = Community.all.includes(:user)
-    @communities = Community.where(is_hidden: false).includes(:user)
+    @communities = Community.where(is_hidden: false).includes(:user).order(created_at: :desc).page(params[:page]).per(9)
   end
 
   def show
-    if @community.is_hidden? && !@community.users.include?(current_user)
+    if @community.is_hidden? && !@community.community_users.exists?(user_id: current_user.id)
       redirect_to communities_path, alert: "このコミュニティは非公開です"
     end
   end

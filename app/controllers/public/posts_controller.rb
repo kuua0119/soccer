@@ -5,12 +5,10 @@ class Public::PostsController < ApplicationController
   before_action :reject_guest_user, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
-    @posts = Post.where(is_hidden: false).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    @posts = Post.includes(:user).where(is_hidden: false).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def new

@@ -3,9 +3,9 @@
     <div class="col-md-8 offset-md-2">
       <div class="card shadow-sm">
         <% if @community.image.attached? %>
-          <%= image_tag @community.image, class: "card-img-top", size: "800x300" %>
+          <%= image_tag @community.image, class: "card-img-top img-fluid", style: "max-height: 300px; object-fit: cover;" %>
         <% else %>
-          <%= image_tag "no-image.png", class: "card-img-top", size: "800x300" %>
+          <%= image_tag "no-image.png", class: "card-img-top img-fluid", style: "max-height: 300px; object-fit: cover;" %>
         <% end %>
 
         <div class="card-body">

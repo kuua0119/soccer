@@ -29,5 +29,11 @@
       <% end %>
       <%= yield %>
     </div>
+    <footer class="bg-dark text-white text-center py-3 mt-5 w-100">
+      <p class="mb-0">
+        © <%= Time.current.year %> サカコミ |
+        <%= link_to "About", about_path, class: "text-white text-decoration-underline" %>
+      </p>
+    </footer>
   </body>
 </html>
