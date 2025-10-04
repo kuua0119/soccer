@@ -3,15 +3,7 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light py-4 mb-0">ユーザーログイン</h5>
       <div class="form-body p-4">
-
-        <% if flash[:alert].present? %>
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <%= flash[:alert] %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        <% end %>
-
-
+        <%= render "public/shared/error_messages", resource: resource %>
         <div class="mx-auto text-center">
           <h5 class="text-dark bg-light py-4 mb-0">メールアドレスと<br>パスワードを入力してください。</h5>
         </div>

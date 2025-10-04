@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :ban, :unban]
   
   def index
-    @users = User.all
+    @users = User.order(created_at: :desc).page(params[:page]).per(9)  
   end
 
   def show

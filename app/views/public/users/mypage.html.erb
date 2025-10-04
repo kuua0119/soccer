@@ -1,8 +1,5 @@
 <div class="container my-5">
   <div class="card shadow-lg mb-5">
-    <div class="card-header p-0">
-      <img src="/assets/banner.jpg" class="img-fluid w-100" alt="バナー画像">
-    </div>
     <div class="card-body text-center">
       <% if current_user.avatar.attached? %>
         <%= image_tag current_user.avatar.variant(resize_to_fill: [120, 120]), class: "rounded-circle mb-3", alt: "プロフィール画像" %>

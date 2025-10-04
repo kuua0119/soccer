@@ -121,6 +121,9 @@ GEM
     kaminari-activerecord (1.2.2)
       activerecord
       kaminari-core (= 1.2.2)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     kaminari-core (1.2.2)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -248,8 +251,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (1.7.3)
-      mini_portile2 (~> 2.8.0)
     sqlite3 (1.7.3-arm64-darwin)
     sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
@@ -281,7 +282,6 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.1.8)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.18)
@@ -300,7 +300,8 @@ DEPENDENCIES
   dotenv-rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  kaminari (~> 1.2.1)
+  kaminari
+  kaminari-bootstrap
   listen (~> 3.3)
   mysql2
   net-imap
@@ -320,7 +321,6 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
-  will_paginate (~> 3.1.0)
 
 RUBY VERSION
    ruby 3.1.2p20
