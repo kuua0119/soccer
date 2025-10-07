@@ -1,4 +1,4 @@
-<% if current_user.likes.exists?(post_id: post.id) %>
+<% if current_user && current_user.likes.exists?(post_id: post.id) %>
   <!-- いいね済み: 削除ボタン -->
   <%= link_to post_likes_path(post),method: :delete,remote: true,class: "btn btn-sm btn-danger" do %>
     ♥ いいね (<span id="like-count-<%= post.id %>"><%= post.likes.count %></span>)

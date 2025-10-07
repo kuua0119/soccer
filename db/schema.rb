@@ -184,21 +184,21 @@ ActiveRecord::Schema.define(version: 2025_10_02_124732) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users", on_delete: :nullify
+  add_foreign_key "comments", "users"
   add_foreign_key "communities", "clubs"
-  add_foreign_key "communities", "users", on_delete: :nullify
+  add_foreign_key "communities", "users"
   add_foreign_key "community_messages", "communities"
-  add_foreign_key "community_messages", "users", on_delete: :nullify
+  add_foreign_key "community_messages", "users"
   add_foreign_key "community_users", "communities"
-  add_foreign_key "community_users", "users", on_delete: :nullify
+  add_foreign_key "community_users", "users"
   add_foreign_key "direct_messages", "rooms"
-  add_foreign_key "direct_messages", "users", on_delete: :nullify
+  add_foreign_key "direct_messages", "users"
   add_foreign_key "entries", "rooms"
-  add_foreign_key "entries", "users", on_delete: :nullify
+  add_foreign_key "entries", "users"
   add_foreign_key "likes", "posts"
-  add_foreign_key "likes", "users", on_delete: :nullify
+  add_foreign_key "likes", "users"
   add_foreign_key "notifications", "communities"
   add_foreign_key "notifications", "community_messages"
-  add_foreign_key "notifications", "users", on_delete: :nullify
-  add_foreign_key "posts", "users", on_delete: :nullify
+  add_foreign_key "notifications", "users"
+  add_foreign_key "posts", "users"
 end

@@ -14,7 +14,7 @@ users = User.create!(
     },
     { 
       name: "山本", 
-      email: "suzuki@example.com", 
+      email: "yamamoto@example.com", 
       password: "123456",
       introduction: "海外サッカーをよく見ます。特にブンデスリーガ。",
     },
