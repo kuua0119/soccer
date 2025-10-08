@@ -69,3 +69,4 @@ gem "net-pop"
 gem "net-imap"
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+gem 'redis', '~> 4.0'
